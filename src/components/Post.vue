@@ -8,8 +8,16 @@
         alt="User profile pic"
       />
       {{ post.creator.name }}
+      <button
+        v-show="post.creatorId == account.id"
+        class="delete-button btn btn-danger rounded-pill content selectable"
+        @click="removePost"
+      >
+        <i class="mdi mdi-delete-forever"></i>
+      </button>
     </h2>
     <h6>{{ post.body }}</h6>
+    <img class="img-fluid" :src="post.imgUrl" alt="" />
   </div>
 </template>
 
@@ -18,6 +26,9 @@
 import { computed } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import { AppState } from "../AppState";
+import Pop from "../utils/Pop";
+import { logger } from "../utils/Logger";
+import { postsService } from "../services/PostsService";
 export default {
   props: { post: { type: Object, required: true } },
   setup(props) {
@@ -28,7 +39,16 @@ export default {
           name: "Profile",
           params: { id: props.post.creatorId },
         });
-        // account: computed(() => AppState.account);
+      },
+      account: computed(() => AppState.account),
+
+      async removePost() {
+        try {
+          await postsService.removePost(props.post.id);
+        } catch (error) {
+          Pop.toast(error.message, "error");
+          logger.error(error);
+        }
       },
     };
   },

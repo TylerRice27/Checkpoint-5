@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
@@ -21,7 +21,7 @@
         <li>
           <router-link
             :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
+            class="btn text-black lighten-30 fs-5 selectable text-uppercase"
           >
             About
           </router-link>

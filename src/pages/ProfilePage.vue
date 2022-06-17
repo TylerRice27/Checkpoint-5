@@ -1,5 +1,9 @@
 <template>
   <div class="container-fluid">
+    <div
+      class="row bg-img"
+      :style="`background-image: url(${profile.coverImg})`"
+    ></div>
     <div class="row justify-content-center profile">
       <div
         class="
@@ -13,6 +17,9 @@
         <img class="profile-img" :src="profile.picture" alt="" />
         <h3 class="col-md-12 text-center">
           {{ profile.name }}
+          <!-- Come back later if you want to add graduation later as an icon -->
+          <!-- <b>Graduated:</b>
+          {{ profile.graduated }} -->
         </h3>
       </div>
     </div>

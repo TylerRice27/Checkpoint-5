@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid">
+    <div class="row">
+      <CreatePost />
+    </div>
     <div class="row justify-content-center">
       <Post v-for="post in posts" :key="post.id" :post="post" />
     </div>
