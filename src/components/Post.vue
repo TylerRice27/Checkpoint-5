@@ -1,6 +1,7 @@
 <template>
   <div class="col-md-6 card text-dark m-3 p-2">
     <h2>
+      {{ post.creator.title }}
       <img
         class="profile-img selectable me-2"
         @click.stop="goToProfile"
@@ -16,7 +17,7 @@
         <i class="mdi mdi-delete-forever"></i>
       </button>
     </h2>
-    <h6>{{ post.body }}</h6>
+    <h5>{{ post.body }}</h5>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
   </div>
 </template>

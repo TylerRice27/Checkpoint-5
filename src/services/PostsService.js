@@ -35,6 +35,7 @@ class PostsService {
         AppState.posts = res.data.posts
         AppState.nextPage = res.data.older
         AppState.previousPage = res.data.newer
+        AppState.currentPage = res.data.page
     }
 
     // this is for changing my page number

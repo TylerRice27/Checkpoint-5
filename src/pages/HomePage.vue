@@ -58,6 +58,7 @@ export default {
       account: computed(() => AppState.account),
       nextPage: computed(() => AppState.nextPage),
       previousPage: computed(() => AppState.previousPage),
+      currentPage: computed(() => AppState.currentPage),
 
       async changePage(url) {
         try {
