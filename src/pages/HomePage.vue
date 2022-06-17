@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <Post v-for="post in Posts" :key="post.id" :post="post" />
+    <div class="row justify-content-center">
+      <Post v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
@@ -9,8 +9,8 @@
 <script>
 import { computed, onMounted } from "@vue/runtime-core";
 import Pop from "../utils/Pop";
-import { AppState } from "../AppState";
-import { postsService } from "../services/PostsService";
+import { AppState } from "../AppState.js";
+import { postsService } from "../services/PostsService.js";
 export default {
   name: "Home",
 

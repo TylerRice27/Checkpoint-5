@@ -13,7 +13,11 @@ class PostsService {
         AppState.posts = res.data.posts
 
     }
-
+    async getPostsByProfile(profileId) {
+        const res = await api.get(`api/posts/?creatorId=${profileId}`);
+        logger.log('Get posts by profile', res.data,)
+        AppState.posts = res.data;
+    }
 }
 
 
