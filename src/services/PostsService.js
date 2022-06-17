@@ -11,6 +11,8 @@ class PostsService {
         logger.log("get all my posts", res.data.posts);
 
         AppState.posts = res.data.posts
+        AppState.nextPage = res.data.older
+        AppState.previousPage = res.data.newer
 
     }
 
@@ -26,6 +28,22 @@ class PostsService {
         logger.log('Get posts by profile', res.data,)
         AppState.posts = res.data.posts;
     }
+
+    async changePage(url) {
+        const res = await api.get(url)
+        logger.log(res.data)
+        AppState.posts = res.data.posts
+        AppState.nextPage = res.data.older
+        AppState.previousPage = res.data.newer
+    }
+
+    // this is for changing my page number
+    // async previousPage(pageNumber) {
+    //     const res = await api.get(`api/posts?page=${pageNumber}`)
+    //     AppState.posts = res.data.posts
+    //     AppState.currentPage -= 1
+    //     AppState.totalPages = res.data.totalPages
+    // }
 
     async removePost(id) {
         const res = await api.delete(`api/posts/${id}`);

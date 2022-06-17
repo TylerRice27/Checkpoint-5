@@ -9,19 +9,22 @@
     <div class="row justify-content-center">
       <div class="col-3 text-start">
         <button
-          :disabled="currentPage <= 1"
-          class="btn btn-info px-3 py-2 btn-block"
-          @click="changePage(currentPage - 1)"
+          :class="`btn btn-${previousPage ? 'danger' : 'info'}`"
+          :disabled="!previousPage"
+          @click="changePage(previousPage)"
         >
           Prev
         </button>
       </div>
-      <p class="col-3 text-center">page {{ currentPage }} of {{ totalPage }}</p>
+      <p class="col-3 text-center">
+        Page {{ currentPage }}
+        <!-- of {{ totalPages }} -->
+      </p>
       <div class="col-3 text-end">
         <button
-          :disabled="currentPage >= totalPage"
-          class="btn btn-info px-3 py-2 btn-block"
-          @click="changePage(currentPage + 1)"
+          class="btn btn-danger"
+          :disabled="!nextPage"
+          @click="changePage(nextPage)"
         >
           Next
         </button>
@@ -35,6 +38,7 @@ import { computed, onMounted } from "@vue/runtime-core";
 import Pop from "../utils/Pop";
 import { AppState } from "../AppState.js";
 import { postsService } from "../services/PostsService.js";
+import { logger } from "../utils/Logger";
 export default {
   name: "Home",
 
@@ -52,6 +56,18 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
+
+      async changePage(url) {
+        try {
+          await postsService.changePage(url);
+          scrollTo(0, 0);
+        } catch (error) {
+          Pop.toast(error.message, "error");
+          logger.error(error);
+        }
+      },
     };
   },
 };
