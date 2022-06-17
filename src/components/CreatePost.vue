@@ -31,6 +31,8 @@ export default {
       async createPost() {
         try {
           await postsService.createPost(postData.value);
+          //   trying to reset form on a post try later
+          //   postData = {};
         } catch (error) {
           Pop.toast(error.message, "error");
           logger.error(error);

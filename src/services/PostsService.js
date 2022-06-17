@@ -18,7 +18,7 @@ class PostsService {
         const res = await api.post("api/posts", postData);
         logger.log(res.data);
 
-        AppState.posts.push(res.data.posts);
+        AppState.posts.unshift(res.data);
     }
 
     async getPostsByProfile(profileId) {

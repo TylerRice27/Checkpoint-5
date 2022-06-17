@@ -44,7 +44,10 @@ export default {
 
       async removePost() {
         try {
-          await postsService.removePost(props.post.id);
+          if (Pop.confirm("Do you Want to Delete?")) {
+            await postsService.removePost(props.post.id);
+            Pop.toast("Post Deleted", "error");
+          }
         } catch (error) {
           Pop.toast(error.message, "error");
           logger.error(error);

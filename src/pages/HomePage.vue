@@ -6,6 +6,27 @@
     <div class="row justify-content-center">
       <Post v-for="post in posts" :key="post.id" :post="post" />
     </div>
+    <div class="row justify-content-center">
+      <div class="col-3 text-start">
+        <button
+          :disabled="currentPage <= 1"
+          class="btn btn-info px-3 py-2 btn-block"
+          @click="changePage(currentPage - 1)"
+        >
+          Prev
+        </button>
+      </div>
+      <p class="col-3 text-center">page {{ currentPage }} of {{ totalPage }}</p>
+      <div class="col-3 text-end">
+        <button
+          :disabled="currentPage >= totalPage"
+          class="btn btn-info px-3 py-2 btn-block"
+          @click="changePage(currentPage + 1)"
+        >
+          Next
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
