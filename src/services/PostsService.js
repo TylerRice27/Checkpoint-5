@@ -38,6 +38,12 @@ class PostsService {
         AppState.currentPage = res.data.page
     }
 
+
+    async like(postId) {
+        const res = await api.post(`api/posts/${postId}/like`)
+        logger.log('get a like', res.data)
+    }
+
     // async changeProfilePage(profileId) {
     //     const res = await api.get(`api/posts/?creatorId=${profileId}`);
     //     logger.log('change page on profile', res.data)

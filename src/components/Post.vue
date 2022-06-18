@@ -21,7 +21,9 @@
     <p>{{ post.creator.createdAt }}</p>
     <h5>{{ post.body }}</h5>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
-    <i class="mdi mdi-heart text-end text-danger">{{ post.likesId }}</i>
+    <i @click="like" class="mdi mdi-heart text-end text-danger">{{
+      post.likes.length
+    }}</i>
   </div>
 </template>
 
@@ -58,33 +60,38 @@ export default {
         }
       },
 
-      timeSince(date) {
-        var seconds = Math.floor((new Date() - date) / 1000);
-
-        var interval = seconds / 31536000;
-
-        if (interval > 1) {
-          return Math.floor(interval) + " years";
-        }
-        interval = seconds / 2592000;
-        if (interval > 1) {
-          return Math.floor(interval) + " months";
-        }
-        interval = seconds / 86400;
-        if (interval > 1) {
-          return Math.floor(interval) + " days";
-        }
-        interval = seconds / 3600;
-        if (interval > 1) {
-          return Math.floor(interval) + " hours";
-        }
-        interval = seconds / 60;
-        if (interval > 1) {
-          return Math.floor(interval) + " minutes";
-        }
-        return Math.floor(seconds) + " seconds";
-        let aDay = 24 * 60 * 60 * 1000;
+      async like() {
+        await postsService.like(props.post.id);
+        await postsService.getPosts();
       },
+
+      //   timeSince(date) {
+      //     var seconds = Math.floor((new Date() - date) / 1000);
+
+      //     var interval = seconds / 31536000;
+
+      //     if (interval > 1) {
+      //       return Math.floor(interval) + " years";
+      //     }
+      //     interval = seconds / 2592000;
+      //     if (interval > 1) {
+      //       return Math.floor(interval) + " months";
+      //     }
+      //     interval = seconds / 86400;
+      //     if (interval > 1) {
+      //       return Math.floor(interval) + " days";
+      //     }
+      //     interval = seconds / 3600;
+      //     if (interval > 1) {
+      //       return Math.floor(interval) + " hours";
+      //     }
+      //     interval = seconds / 60;
+      //     if (interval > 1) {
+      //       return Math.floor(interval) + " minutes";
+      //     }
+      //     return Math.floor(seconds) + " seconds";
+      //     let aDay = 24 * 60 * 60 * 1000;
+      //   },
     };
   },
 };
