@@ -25,6 +25,30 @@
     </div>
     <!-- come back here later and put in create blog for account user only -->
     <div class="row"><Post v-for="p in posts" :key="p.id" :post="p" /></div>
+    <div class="row justify-content-center">
+      <div class="col-3 text-start">
+        <button
+          :class="`btn btn-${previousPage ? 'danger' : 'info'}`"
+          :disabled="!previousPage"
+          @click="changePage(previousPage)"
+        >
+          Prev
+        </button>
+      </div>
+      <p class="col-3 text-center">
+        Page {{ currentPage }}
+        <!-- of {{ totalPages }} -->
+      </p>
+      <div class="col-3 text-end">
+        <button
+          class="btn btn-danger"
+          :disabled="!nextPage"
+          @click="changePage(nextPage)"
+        >
+          Next
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,6 +78,19 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
+      currentPage: computed(() => AppState.currentPage),
+
+      async changePage(url) {
+        try {
+          await postsService.changePage(url);
+          scrollTo(0, 0);
+        } catch (error) {
+          Pop.toast(error.message, "error");
+          logger.error(error);
+        }
+      },
     };
   },
 };

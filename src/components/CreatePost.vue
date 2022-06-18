@@ -4,8 +4,8 @@
     <!-- <input type="text" placeholder="Title" v-model="postData.title" /> -->
     <input type="text" placeholder="Image Url" v-model="postData.imgUrl" />
     <textarea
-      name=""
-      id=""
+      name="postBody"
+      id="postBody"
       cols="30"
       rows="4"
       placeholder="Post Content"
@@ -28,6 +28,7 @@ export default {
     const postData = ref({});
     return {
       postData,
+
       async createPost() {
         try {
           await postsService.createPost(postData.value);
