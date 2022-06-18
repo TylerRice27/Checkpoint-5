@@ -38,6 +38,15 @@ class PostsService {
         AppState.currentPage = res.data.page
     }
 
+    // async changeProfilePage(profileId) {
+    //     const res = await api.get(`api/posts/?creatorId=${profileId}`);
+    //     logger.log('change page on profile', res.data)
+    //     AppState.posts = res.data.posts
+    //     AppState.nextPage = res.data.older
+    //     AppState.previousPage = res.data.newer
+    //     AppState.currentPage = res.data.page
+    // }
+
     // this is for changing my page number
     // async previousPage(pageNumber) {
     //     const res = await api.get(`api/posts?page=${pageNumber}`)

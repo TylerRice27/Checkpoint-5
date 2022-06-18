@@ -17,7 +17,7 @@
         <i class="mdi mdi-delete-forever"></i>
       </button>
     </h2>
-    <!-- change this to smaller createat time -->
+    <!-- change this to smaller create at time -->
     <p>{{ post.creator.createdAt }}</p>
     <h5>{{ post.body }}</h5>
     <img class="img-fluid" :src="post.imgUrl" alt="" />

@@ -24,29 +24,24 @@
       </div>
     </div>
     <!-- come back here later and put in create blog for account user only -->
-    <div class="row"><Post v-for="p in posts" :key="p.id" :post="p" /></div>
+    <div class="row">
+      <Post v-for="p in posts" :key="p.id" :post="p" />
+    </div>
     <div class="row justify-content-center">
       <div class="col-3 text-start">
-        <button
+        <!-- come back here later for profile posts to change page -->
+        <!-- <button
           :class="`btn btn-${previousPage ? 'danger' : 'info'}`"
-          :disabled="!previousPage"
-          @click="changePage(previousPage)"
+          @click="changeProfilePage(previousPage)"
         >
           Prev
         </button>
       </div>
-      <p class="col-3 text-center">
-        Page {{ currentPage }}
-        <!-- of {{ totalPages }} -->
-      </p>
+      <p class="col-3 text-center">Page {{ currentPage }}</p>
       <div class="col-3 text-end">
-        <button
-          class="btn btn-danger"
-          :disabled="!nextPage"
-          @click="changePage(nextPage)"
-        >
+        <button class="btn btn-danger" @click="changeProfilePage(nextPage)">
           Next
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
@@ -82,9 +77,9 @@ export default {
       previousPage: computed(() => AppState.previousPage),
       currentPage: computed(() => AppState.currentPage),
 
-      async changePage(url) {
+      async changeProfilePage(id) {
         try {
-          await postsService.changePage(url);
+          await postsService.changeProfilePage(id);
           scrollTo(0, 0);
         } catch (error) {
           Pop.toast(error.message, "error");

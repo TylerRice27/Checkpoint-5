@@ -39,6 +39,7 @@ import Pop from "../utils/Pop";
 import { AppState } from "../AppState.js";
 import { postsService } from "../services/PostsService.js";
 import { logger } from "../utils/Logger";
+import { adService } from "../services/AdService";
 export default {
   name: "Home",
 
@@ -46,6 +47,8 @@ export default {
     onMounted(async () => {
       try {
         AppState.posts = [];
+        AppState.ads = [];
+        await adService.getAd();
         await postsService.getPosts();
       } catch (error) {
         Pop.toast(error.message, "error");
@@ -54,6 +57,7 @@ export default {
     });
 
     return {
+      ads: computed(() => AppState.ads),
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
       nextPage: computed(() => AppState.nextPage),
