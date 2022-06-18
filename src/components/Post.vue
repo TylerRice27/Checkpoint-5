@@ -11,14 +11,17 @@
       {{ post.creator.name }}
       <button
         v-show="post.creatorId == account.id"
-        class="delete-button btn btn-danger rounded-pill content selectable"
+        class="delete-button btn trash col-2 btn-danger rounded-pill selectable"
         @click="removePost"
       >
         <i class="mdi mdi-delete-forever"></i>
       </button>
     </h2>
+    <!-- change this to smaller createat time -->
+    <p>{{ post.creator.createdAt }}</p>
     <h5>{{ post.body }}</h5>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
+    <i class="mdi mdi-heart text-end text-danger">{{ post.likesId }}</i>
   </div>
 </template>
 
@@ -66,5 +69,8 @@ export default {
   height: 40px;
   border-radius: 45px;
   object-fit: cover;
+}
+.trash {
+  margin-left: 130px;
 }
 </style>
