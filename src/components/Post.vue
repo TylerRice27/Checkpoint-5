@@ -9,13 +9,38 @@
         alt="User profile pic"
       />
       {{ post.creator.name }}
-      <button
-        v-show="post.creatorId == account.id"
-        class="delete-button btn trash col-2 btn-danger rounded-pill selectable"
-        @click="removePost"
-      >
-        <i class="mdi mdi-delete-forever"></i>
-      </button>
+      <div class="d-flex mt-2 justify-content-between">
+        <button
+          v-show="post.creatorId == account.id"
+          class="
+            delete-button
+            btn
+            trash
+            col-1
+            btn-danger
+            rounded-pill
+            selectable
+          "
+          @click="removePost"
+        >
+          <i class="mdi mdi-delete-forever"></i>
+        </button>
+        <button
+          v-show="post.creatorId == account.id"
+          class="
+            btn
+            trash
+            col-1
+            btn-warning
+            rounded-pill
+            justify-content-end
+            selectable
+          "
+          @click="editPost"
+        >
+          <i class="mdi mdi-pencil"></i>
+        </button>
+      </div>
     </h2>
     <!-- change this to smaller create at time -->
     <p>{{ post.creator.createdAt }}</p>
@@ -106,6 +131,6 @@ export default {
   object-fit: cover;
 }
 .trash {
-  margin-left: 130px;
+  //   margin-left: 130px;
 }
 </style>

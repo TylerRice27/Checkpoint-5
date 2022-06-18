@@ -4,11 +4,12 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="https://i.pinimg.com/originals/cf/21/ea/cf21ea56f6984d27e1e24dc1c43aba5a.png"
+          src="https://toppng.com/uploads/preview/spider-man-spider-symbol-11549788086zodnlvhh03.png"
           height="45"
           class="rounded"
         />
       </div>
+      <h2 class="m-2 text-dark">The Network</h2>
     </router-link>
     <button
       class="navbar-toggler"

@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
       <div class="col-3 text-start">
         <button
-          :class="`btn btn-${previousPage ? 'danger' : 'info'}`"
+          :class="`btn btn-${previousPage ? 'primary' : 'danger'}`"
           :disabled="!previousPage"
           @click="changePage(previousPage)"
         >
@@ -22,7 +22,7 @@
       </p>
       <div class="col-3 text-end">
         <button
-          class="btn btn-danger"
+          :class="`btn btn-${nextPage ? 'primary' : 'danger'}`"
           :disabled="!nextPage"
           @click="changePage(nextPage)"
         >
