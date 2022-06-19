@@ -42,13 +42,14 @@
         </button>
       </div>
     </h2>
-    <!-- change this to smaller create at time -->
-    <p>{{ post.creator.createdAt }}</p>
     <h5>{{ post.body }}</h5>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
-    <i @click="like" class="mdi mdi-heart text-end text-danger">{{
-      post.likes.length
-    }}</i>
+    <div class="d-flex justify-content-between col-md-12">
+      <p>{{ moment(`${post.createdAt}`).fromNow() }}</p>
+      <i @click="like" class="mdi mdi-heart text-end text-danger">{{
+        post.likes.length
+      }}</i>
+    </div>
   </div>
 </template>
 
@@ -60,11 +61,13 @@ import { AppState } from "../AppState";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { postsService } from "../services/PostsService";
+import moment from "moment";
 export default {
   props: { post: { type: Object, required: true } },
   setup(props) {
     const router = useRouter();
     return {
+      moment: moment,
       goToProfile() {
         router.push({
           name: "Profile",
@@ -93,6 +96,11 @@ export default {
       async like() {
         await postsService.like(props.post.id);
         await postsService.getPosts();
+      },
+
+      time() {
+        moment().endof("day").fromNow();
+        // moment().endof(post.creator.createAt).fromNow();
       },
 
       //   timeSince(date) {
@@ -134,8 +142,5 @@ export default {
   height: 40px;
   border-radius: 45px;
   object-fit: cover;
-}
-.trash {
-  //   margin-left: 130px;
 }
 </style>
