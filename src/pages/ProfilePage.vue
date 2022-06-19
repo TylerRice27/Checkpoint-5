@@ -23,12 +23,14 @@
           {{ profile.name }}
         </h3>
         <div class="col-md-12 text-center mt-3 mb-3">
-          <i v-if="profile.github" class="mdi-36px mdi mdi-github m-5"></i>
-          <i v-if="profile.linkedin" class="mdi-36px mdi mdi-linkedin m-5"></i>
-          <i v-if="profile.resume" class="mobile mdi-36px mdi mdi-note m-5"></i>
+          <i v-if="profile.github" class="mdi-36px mdi mdi-github m-4"></i>
+          <i v-if="profile.linkedin" class="mdi-36px mdi mdi-linkedin m-4"></i>
+          <i v-if="profile.resume" class="mobile mdi-36px mdi mdi-note m-4"></i>
         </div>
 
-        <p class="mt-5">{{ profile.bio }}</p>
+        <p><b>Class: </b>{{ profile.class }}</p>
+
+        <p class="mt-2">{{ profile.bio }}</p>
       </div>
     </div>
     <!-- come back here later and put in create blog for account user only -->

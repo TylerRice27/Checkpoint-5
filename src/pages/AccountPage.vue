@@ -15,12 +15,31 @@
           <label for="">Account Name</label>
           <input type="text" v-model="editable.name" />
 
+          <label for="">Bio</label>
+          <input type="text" v-model="editable.bio" />
+
           <label for="">Account Picture</label>
           <input type="text" v-model="editable.picture" />
 
           <label for="">Account Cover Image</label>
           <input type="text" v-model="editable.coverImg" />
-          <button class="btn btn-primary">Save Changes!</button>
+
+          <label for="">Github</label>
+          <input type="text" v-model="editable.github" />
+
+          <label for="">Linkedin</label>
+          <input type="text" v-model="editable.linkedin" />
+
+          <label for="">Resume</label>
+          <input type="text" v-model="editable.resume" />
+
+          <label for="">Class</label>
+          <input type="text" v-model="editable.class" />
+
+          <label for="">Graduated</label>
+          <input type="text" v-model="editable.graduated" />
+
+          <button class="mt-3 btn btn-primary">Save Changes!</button>
         </form>
       </div>
     </div>

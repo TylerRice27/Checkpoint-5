@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-6 card text-dark m-3 p-2">
-    <h2>
+    <h2 class="d-flex text-end">
       <img
         class="profile-img selectable me-2"
         @click.stop="goToProfile"
@@ -13,15 +13,8 @@
         class="mdi-18px mdi mdi-account-circle"
       ></i>
     </h2>
-    <div class="d-flex mt-2 justify-content-between">
-      <button
-        v-show="post.creatorId == account.id"
-        class="delete-button btn trash col-1 btn-danger rounded-pill selectable"
-        @click="removePost"
-      >
-        <i class="mdi mdi-delete-forever"></i>
-      </button>
-      <button
+
+    <!-- <button
         v-show="post.creatorId == account.id"
         class="
           btn
@@ -35,8 +28,8 @@
         @click="editPost"
       >
         <i class="mdi mdi-pencil"></i>
-      </button>
-    </div>
+      </button> -->
+
     <h6>{{ post.body }}</h6>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
     <div class="d-flex justify-content-between col-md-12">
@@ -45,6 +38,21 @@
         post.likes.length
       }}</i>
     </div>
+    <button
+      v-show="post.creatorId == account.id"
+      class="
+        delete-button
+        col-md-1
+        btn
+        trash
+        btn-danger
+        rounded-pill
+        selectable
+      "
+      @click="removePost"
+    >
+      <i class="mdi mdi-delete-forever"></i>
+    </button>
   </div>
 </template>
 
@@ -137,5 +145,10 @@ export default {
   height: 40px;
   border-radius: 45px;
   object-fit: cover;
+}
+.trash {
+  //   display: flex;
+
+  //   margin-left: 250px;
 }
 </style>
