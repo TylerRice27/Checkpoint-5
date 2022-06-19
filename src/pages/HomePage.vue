@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <CreatePost />
+      <CreatePost v-if="account.id" />
     </div>
     <div class="try col-md-2 m-3">
       <Ad v-for="ad in ads" :key="ad.title" :ad="ad" />
