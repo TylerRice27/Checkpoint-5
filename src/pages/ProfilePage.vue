@@ -15,6 +15,10 @@
         "
       >
         <img class="profile-img" :src="profile.picture" alt="" />
+        <i
+          v-if="profile.graduated"
+          class="spill mdi-18px mdi mdi-account-circle"
+        ></i>
         <h3 class="col-md-12 text-center">
           {{ profile.name }}
           <!-- Come back later if you want to add graduation later as an icon -->
@@ -107,5 +111,12 @@ export default {
   height: 150px;
   object-fit: cover;
   border-radius: 50em;
+}
+.spill {
+  position: relative;
+  transform: scale(1.5);
+  top: -15px;
+  right: -2em;
+  color: whitesmoke;
 }
 </style>

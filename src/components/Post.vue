@@ -1,7 +1,6 @@
 <template>
   <div class="col-md-6 card text-dark m-3 p-2">
     <h2>
-      {{ post.creator.title }}
       <img
         class="profile-img selectable me-2"
         @click.stop="goToProfile"
@@ -9,44 +8,40 @@
         alt="User profile pic"
       />
       {{ post.creator.name }}
-      <div class="d-flex mt-2 justify-content-between">
-        <button
-          v-show="post.creatorId == account.id"
-          class="
-            delete-button
-            btn
-            trash
-            col-1
-            btn-danger
-            rounded-pill
-            selectable
-          "
-          @click="removePost"
-        >
-          <i class="mdi mdi-delete-forever"></i>
-        </button>
-        <button
-          v-show="post.creatorId == account.id"
-          class="
-            btn
-            trash
-            col-1
-            btn-warning
-            rounded-pill
-            justify-content-end
-            selectable
-          "
-          @click="editPost"
-        >
-          <i class="mdi mdi-pencil"></i>
-        </button>
-      </div>
+      <i
+        v-if="post.creator.graduated"
+        class="mdi-18px mdi mdi-account-circle"
+      ></i>
     </h2>
-    <h5>{{ post.body }}</h5>
+    <div class="d-flex mt-2 justify-content-between">
+      <button
+        v-show="post.creatorId == account.id"
+        class="delete-button btn trash col-1 btn-danger rounded-pill selectable"
+        @click="removePost"
+      >
+        <i class="mdi mdi-delete-forever"></i>
+      </button>
+      <button
+        v-show="post.creatorId == account.id"
+        class="
+          btn
+          trash
+          col-1
+          btn-warning
+          rounded-pill
+          justify-content-end
+          selectable
+        "
+        @click="editPost"
+      >
+        <i class="mdi mdi-pencil"></i>
+      </button>
+    </div>
+    <h6>{{ post.body }}</h6>
     <img class="img-fluid" :src="post.imgUrl" alt="" />
     <div class="d-flex justify-content-between col-md-12">
       <p>{{ moment(`${post.createdAt}`).fromNow() }}</p>
-      <i @click="like" class="mdi mdi-heart text-end text-danger">{{
+      <i @click="like" class="heart mdi mdi-heart text-end text-danger">{{
         post.likes.length
       }}</i>
     </div>
