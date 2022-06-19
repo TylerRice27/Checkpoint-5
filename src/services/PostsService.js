@@ -44,6 +44,21 @@ class PostsService {
         logger.log('get a like', res.data)
     }
 
+    // come back here and maybe add the same await but for profiles
+    async searchPosts(query = '') {
+        AppState.query = query
+        logger.log('searching', query)
+        const res = await api.get(`api/posts?${query}`)
+        logger.log('searching Posts', res.data)
+        AppState.posts = res.data.posts
+        AppState.previousPage = res.data.newer
+        AppState.currentPage = res.data.page
+
+    }
+
+
+
+
     // async changeProfilePage(profileId) {
     //     const res = await api.get(`api/posts/?creatorId=${profileId}`);
     //     logger.log('change page on profile', res.data)

@@ -23,16 +23,18 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
+      <div class="navbar-nav me-auto">
+        <Search />
+        <!-- <li>
           <router-link
             :to="{ name: 'About' }"
             class="btn text-black lighten-30 fs-5 selectable text-uppercase"
           >
             About
           </router-link>
-        </li>
-      </ul>
+        </li> -->
+      </div>
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -40,7 +42,9 @@
 </template>
 
 <script>
+import Search from "./Search.vue";
 export default {
+  components: { Search },
   setup() {
     return {};
   },
