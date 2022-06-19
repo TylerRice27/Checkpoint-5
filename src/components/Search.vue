@@ -34,6 +34,16 @@ export default {
           logger.error(error);
         }
       },
+
+      async searchProfile() {
+        try {
+          logger.log("searching", search.value);
+          await postsService.searchProfile(`query=${search.value}`);
+        } catch (error) {
+          Pop.toast(error.message, "error");
+          logger.error(error);
+        }
+      },
     };
   },
 };

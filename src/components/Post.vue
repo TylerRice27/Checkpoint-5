@@ -95,7 +95,8 @@ export default {
           logger.error(error);
         }
       },
-
+      // need to figure out why it brings me back to page one
+      // has to do with get posts grabbing all the posts again
       async like() {
         await postsService.like(props.post.id);
         await postsService.getPosts();

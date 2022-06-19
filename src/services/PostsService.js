@@ -9,7 +9,6 @@ class PostsService {
     async getPosts() {
         const res = await api.get("api/posts");
         logger.log("get all my posts", res.data.posts);
-
         AppState.posts = res.data.posts
         AppState.nextPage = res.data.older
         AppState.previousPage = res.data.newer
@@ -55,6 +54,18 @@ class PostsService {
         AppState.currentPage = res.data.page
 
     }
+    async searchProfile(query = '') {
+        AppState.query = query
+        logger.log('searching', query)
+        const res = await api.get(`api/profiles/name?${query}`)
+        logger.log('searching Posts', res.data)
+        AppState.posts = res.data.posts
+        AppState.previousPage = res.data.newer
+        AppState.currentPage = res.data.page
+
+    }
+
+
 
 
 
