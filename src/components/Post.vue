@@ -73,6 +73,11 @@ export default {
       },
       account: computed(() => AppState.account),
 
+      // come back to this later and write a function for your edit button
+      //   editPost(){
+
+      //   }
+
       async removePost() {
         try {
           if (await Pop.confirm("Do you Want to Delete?")) {

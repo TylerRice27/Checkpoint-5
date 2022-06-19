@@ -3,6 +3,10 @@
     <div class="row">
       <CreatePost />
     </div>
+    <div class="try col-md-2 m-3">
+      <Ad v-for="ad in ads" :key="ad.title" :ad="ad" />
+    </div>
+
     <div class="row justify-content-center">
       <Post v-for="post in posts" :key="post.id" :post="post" />
     </div>
@@ -16,10 +20,7 @@
           Prev
         </button>
       </div>
-      <p class="col-3 text-center">
-        Page {{ currentPage }}
-        <!-- of {{ totalPages }} -->
-      </p>
+      <p class="col-3 text-center">Page {{ currentPage }}</p>
       <div class="col-3 text-end">
         <button
           :class="`btn btn-${nextPage ? 'primary' : 'danger'}`"
@@ -48,7 +49,7 @@ export default {
       try {
         AppState.posts = [];
         AppState.ads = [];
-        await adService.getAd();
+        await adService.getAds();
         await postsService.getPosts();
       } catch (error) {
         Pop.toast(error.message, "error");
@@ -79,6 +80,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.try {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+}
 .home {
   display: grid;
   height: 80vh;

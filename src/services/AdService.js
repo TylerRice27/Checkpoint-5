@@ -9,7 +9,7 @@ import { api } from "./AxiosService.js";
 
 class AdService {
 
-    async getAd() {
+    async getAds() {
         const res = await api.get("api/ads")
         logger.log('get my ads from the api', res.data)
         AppState.ads = res.data
