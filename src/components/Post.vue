@@ -99,6 +99,8 @@ export default {
       // has to do with get posts grabbing all the posts again
       async like() {
         await postsService.like(props.post.id);
+        // bring this back in if I want the likes to work but brings me back
+        // page one
         await postsService.getPosts();
       },
 
