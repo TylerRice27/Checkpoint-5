@@ -3,12 +3,13 @@
     <div class="row">
       <CreatePost v-if="account.id" />
     </div>
-    <div class="try col-md-2 m-3">
-      <Ad v-for="ad in ads" :key="ad.title" :ad="ad" />
-    </div>
-
-    <div class="row justify-content-center">
-      <Post v-for="post in posts" :key="post.id" :post="post" />
+    <div class="row">
+      <div class="col-md-9 justify-content-center">
+        <Post v-for="post in posts" :key="post.id" :post="post" />
+      </div>
+      <div class="try col-md-3 align-items-center">
+        <Ad v-for="ad in ads" :key="ad.title" :ad="ad" />
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-3 text-start">

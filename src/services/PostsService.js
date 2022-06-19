@@ -38,6 +38,16 @@ class PostsService {
     }
 
 
+    async changeProfilePage(profileId) {
+        const res = await api.get(`api/posts/?creatorId=${profileId}&page=`);
+        logger.log('change page on profile', res.data)
+        AppState.posts = res.data.posts
+        AppState.nextPage = res.data.older
+        AppState.previousProfilePage = res.data.newer
+        AppState.currentProfilePage = res.data.page
+    }
+
+
     async like(postId) {
         const res = await api.post(`api/posts/${postId}/like`)
         logger.log('get a like', res.data)
@@ -57,8 +67,9 @@ class PostsService {
     async searchProfile(query = '') {
         AppState.query = query
         logger.log('searching', query)
-        const res = await api.get(`api/profiles/name?${query}`)
+        const res = await api.get(`api/profiles?${query}`)
         logger.log('searching Posts', res.data)
+
         AppState.posts = res.data.posts
         AppState.previousPage = res.data.newer
         AppState.currentPage = res.data.page
@@ -70,14 +81,6 @@ class PostsService {
 
 
 
-    // async changeProfilePage(profileId) {
-    //     const res = await api.get(`api/posts/?creatorId=${profileId}`);
-    //     logger.log('change page on profile', res.data)
-    //     AppState.posts = res.data.posts
-    //     AppState.nextPage = res.data.older
-    //     AppState.previousPage = res.data.newer
-    //     AppState.currentPage = res.data.page
-    // }
 
     // this is for changing my page number
     // async previousPage(pageNumber) {

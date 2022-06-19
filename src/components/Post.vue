@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-6 card text-dark m-3 p-2">
+  <div class="card text-dark m-3 p-2">
     <h2 class="d-flex text-end">
       <img
         class="profile-img selectable me-2"

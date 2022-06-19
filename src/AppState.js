@@ -8,7 +8,10 @@ export const AppState = reactive({
   posts: [],
   ads: [],
   nextPage: '',
+  nextProfilePage: '',
   previousPage: '',
   currentPage: 1,
+  previousProfilePage: '',
+  currentProfilePage: 1,
   query: ''
 })

@@ -1,5 +1,5 @@
 <template>
-  <img class="adz img-fluid" :src="ad.tall" alt="" />
+  <img class="adz img-fluid rounded border border-3" :src="ad.tall" alt="" />
 </template>
 
 
@@ -30,7 +30,7 @@ export default {
 .adz {
   width: 220px;
   height: 455px;
-  margin-left: -4px;
+  //   margin-left: -4px;
   margin-top: 55px;
 }
 </style>

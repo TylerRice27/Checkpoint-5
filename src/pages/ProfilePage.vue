@@ -34,24 +34,32 @@
       </div>
     </div>
     <!-- come back here later and put in create blog for account user only -->
-    <div class="row justify-content-center">
-      <Post v-for="p in posts" :key="p.id" :post="p" />
+    <div class="row">
+      <div class="col-md-9 justify-content-center">
+        <Post v-for="p in posts" :key="p.id" :post="p" />
+      </div>
+      <div class="try col-md-3 align-items-center">
+        <Ad v-for="ad in ads" :key="ad.title" :ad="ad" />
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-3 text-start">
         <!-- come back here later for profile posts to change page -->
-        <!-- <button
-          :class="`btn btn-${previousPage ? 'danger' : 'info'}`"
-          @click="changeProfilePage(previousPage)"
+        <button
+          :class="`btn btn-${previousProfilePage ? 'danger' : 'info'}`"
+          @click="changeProfilePage(previousProfilePage)"
         >
           Prev
         </button>
       </div>
-      <p class="col-3 text-center">Page {{ currentPage }}</p>
+      <p class="col-3 text-center">Page {{ currentProfilePage }}</p>
       <div class="col-3 text-end">
-        <button class="btn btn-danger" @click="changeProfilePage(nextPage)">
+        <button
+          class="btn btn-danger"
+          @click="changeProfilePage(nextProfilePage)"
+        >
           Next
-        </button> -->
+        </button>
       </div>
     </div>
   </div>
@@ -83,13 +91,14 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
-      nextPage: computed(() => AppState.nextPage),
-      previousPage: computed(() => AppState.previousPage),
-      currentPage: computed(() => AppState.currentPage),
+      ads: computed(() => AppState.ads),
+      nextPage: computed(() => AppState.nextProfilePage),
+      previousProfilePage: computed(() => AppState.previousProfilePage),
+      currentProfilePage: computed(() => AppState.currentProfilePage),
 
-      async changeProfilePage(id) {
+      async changeProfilePage() {
         try {
-          await postsService.changeProfilePage(id);
+          await postsService.changeProfilePage(route.params.id);
           scrollTo(0, 0);
         } catch (error) {
           Pop.toast(error.message, "error");

@@ -1,5 +1,8 @@
 <template>
-  <form class="pb-4 d-flex flex-column bg-dark" @submit.prevent="createPost">
+  <form
+    class="pb-4 d-flex rounded flex-column bg-dark"
+    @submit.prevent="createPost"
+  >
     <h3 class="text-center m-2">Create a Post!</h3>
     <!-- <input type="text" placeholder="Title" v-model="postData.title" /> -->
     <input type="text" placeholder="Image Url" v-model="postData.imgUrl" />
