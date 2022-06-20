@@ -46,7 +46,8 @@
       <div class="col-3 text-start">
         <!-- come back here later for profile posts to change page -->
         <button
-          :class="`btn btn-${previousProfilePage ? 'danger' : 'info'}`"
+          :class="`btn btn-${previousProfilePage ? 'primary' : 'danger'}`"
+          :disabled="!previousProfilePage"
           @click="changeProfilePage(previousProfilePage)"
         >
           Prev
@@ -55,7 +56,8 @@
       <p class="col-3 text-center">Page {{ currentProfilePage }}</p>
       <div class="col-3 text-end">
         <button
-          class="btn btn-danger"
+          :class="`btn btn-${nextProfilePage ? 'primary' : 'danger'}`"
+          :disabled="!nextProfilePage"
           @click="changeProfilePage(nextProfilePage)"
         >
           Next
@@ -74,6 +76,7 @@ import Pop from "../utils/Pop";
 import { AppState } from "../AppState";
 import { profilesService } from "../services/ProfilesService";
 import { postsService } from "../services/PostsService";
+import { adService } from "../services/AdService";
 export default {
   setup() {
     const route = useRoute();
@@ -82,6 +85,7 @@ export default {
         AppState.posts = [];
         await profilesService.getProfile(route.params.id);
         await postsService.getPostsByProfile(route.params.id);
+        await adService.getAds();
       } catch (error) {
         Pop.toast(error.message, "error");
         logger.error(error);
@@ -92,13 +96,13 @@ export default {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
-      nextPage: computed(() => AppState.nextProfilePage),
+      nextProfilePage: computed(() => AppState.nextProfilePage),
       previousProfilePage: computed(() => AppState.previousProfilePage),
       currentProfilePage: computed(() => AppState.currentProfilePage),
 
       async changeProfilePage() {
         try {
-          await postsService.changeProfilePage(route.params.id);
+          await postsService.changeProfilePage();
           scrollTo(0, 0);
         } catch (error) {
           Pop.toast(error.message, "error");

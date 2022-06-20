@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-dark m-3 p-2">
+  <div class="card elevation-20 text-dark m-3 p-2">
     <h2 class="d-flex text-end">
       <img
         class="profile-img selectable me-2"

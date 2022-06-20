@@ -33,4 +33,10 @@ export default {
   //   margin-left: -4px;
   margin-top: 55px;
 }
+
+@media (max-width: 768px) {
+  .adz {
+    display: none;
+  }
+}
 </style>
