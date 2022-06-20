@@ -23,9 +23,24 @@
           {{ profile.name }}
         </h3>
         <div class="col-md-12 text-center mt-3 mb-3">
-          <i v-if="profile.github" class="mdi-36px mdi mdi-github m-4"></i>
-          <i v-if="profile.linkedin" class="mdi-36px mdi mdi-linkedin m-4"></i>
-          <i v-if="profile.resume" class="mobile mdi-36px mdi mdi-note m-4"></i>
+          <a
+            v-if="profile.github"
+            :href="profile.github"
+            target="_blank"
+            class="mdi-36px mdi mdi-github m-4"
+          ></a>
+          <a
+            v-if="profile.linkedin"
+            :href="profile.linkedin"
+            target="_blank"
+            class="mdi-36px mdi mdi-linkedin m-4"
+          ></a>
+          <a
+            v-if="profile.resume"
+            :href="profile.resume"
+            target="_blank"
+            class="mobile mdi-36px mdi mdi-note m-4"
+          ></a>
         </div>
 
         <p><b>Class: </b>{{ profile.class }}</p>
@@ -46,19 +61,17 @@
       <div class="col-3 text-start">
         <!-- come back here later for profile posts to change page -->
         <button
-          :class="`btn btn-${previousProfilePage ? 'primary' : 'danger'}`"
-          :disabled="!previousProfilePage"
-          @click="changeProfilePage(previousProfilePage)"
+          :class="`btn btn-${previousPage ? 'primary' : 'danger'}`"
+          @click="changePage(previousPage)"
         >
           Prev
         </button>
       </div>
-      <p class="col-3 text-center">Page {{ currentProfilePage }}</p>
+      <p class="col-3 text-center">Page {{ currentPage }}</p>
       <div class="col-3 text-end">
         <button
-          :class="`btn btn-${nextProfilePage ? 'primary' : 'danger'}`"
-          :disabled="!nextProfilePage"
-          @click="changeProfilePage(nextProfilePage)"
+          :class="`btn btn-${nextPage ? 'primary' : 'danger'}`"
+          @click="changePage(nextPage)"
         >
           Next
         </button>
@@ -96,13 +109,13 @@ export default {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
-      nextProfilePage: computed(() => AppState.nextProfilePage),
-      previousProfilePage: computed(() => AppState.previousProfilePage),
-      currentProfilePage: computed(() => AppState.currentProfilePage),
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
+      currentPage: computed(() => AppState.currentPage),
 
-      async changeProfilePage() {
+      async changePage(url) {
         try {
-          await postsService.changeProfilePage();
+          await postsService.changePage(url);
           scrollTo(0, 0);
         } catch (error) {
           Pop.toast(error.message, "error");

@@ -101,7 +101,7 @@ export default {
         await postsService.like(props.post.id);
         // bring this back in if I want the likes to work but brings me back
         // page one
-        await postsService.getPosts();
+        // await postsService.getPosts();
       },
 
       time() {

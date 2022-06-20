@@ -26,9 +26,13 @@ class PostsService {
         const res = await api.get(`api/posts/?creatorId=${profileId}`);
         logger.log('Get posts by profile', res.data,)
         AppState.posts = res.data.posts;
+        AppState.nextPage = res.data.older
+        AppState.previousPage = res.data.newer
+        AppState.currentPage = res.data.page
     }
 
     async changePage(url) {
+        debugger
         const res = await api.get(url)
         logger.log(res.data)
         AppState.posts = res.data.posts
@@ -38,19 +42,21 @@ class PostsService {
     }
 
 
-    async changeProfilePage(profileId) {
-        const res = await api.get(`api/posts/?creatorId=${profileId}&page=`);
-        logger.log('change page on profile', res.data)
-        AppState.posts = res.data.posts
-        AppState.nextPage = res.data.older
-        AppState.previousProfilePage = res.data.newer
-        AppState.currentProfilePage = res.data.page
-    }
+    // async changeProfilePage(profileId) {
+    //     const res = await api.get(`api/posts/?creatorId=${profileId}&page=`);
+    //     logger.log('change page on profile', res.data)
+    //     AppState.posts = res.data.posts
+    //     AppState.nextPage = res.data.older
+    //     AppState.previousProfilePage = res.data.newer
+    //     AppState.currentProfilePage = res.data.page
+    // }
 
 
     async like(postId) {
         const res = await api.post(`api/posts/${postId}/like`)
+        let original = AppState.posts.find(p => p.id == post.id)
         logger.log('get a like', res.data)
+        original.likes = res.data.likes
     }
 
     // come back here and maybe add the same await but for profiles
