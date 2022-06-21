@@ -32,7 +32,6 @@ class PostsService {
     }
 
     async changePage(url) {
-        debugger
         const res = await api.get(url)
         logger.log(res.data)
         AppState.posts = res.data.posts
@@ -54,7 +53,7 @@ class PostsService {
 
     async like(postId) {
         const res = await api.post(`api/posts/${postId}/like`)
-        let original = AppState.posts.find(p => p.id == post.id)
+        let original = AppState.posts.find(p => p.id == postId)
         logger.log('get a like', res.data)
         original.likes = res.data.likes
     }
